@@ -1,11 +1,16 @@
 FROM python:3.12.3
 
-WORKDIR /app
+# Встановимо змінну середовища
+ENV APP_HOME /app
 
-COPY goit-ds-hw-01_2.py /app/
+# Встановимо робочу директорію всередині контейнера
+WORKDIR $APP_HOME
 
-RUN pip install -r requirements.txt
+# Скопіюємо інші файли в робочу директорію контейнера
+COPY . .
 
-ENTRYPOINT [ "python","goit-ds-hw-01_2.py" ]
+# Встановимо залежності всередині контейнера
+RUN pip install -r requirements.txtк
 
-EXPOSE 5000
+# Запустимо наш застосунок всередині контейнера
+ENTRYPOINT ["python", "goit-ds-hw-01_2.py"]
